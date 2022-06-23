@@ -78,6 +78,7 @@ public class AwsClientFactories {
 
   static class DefaultAwsClientFactory implements AwsClientFactory {
 
+    private String glueEndpoint;
     private String s3Endpoint;
     private String s3AccessKeyId;
     private String s3SecretAccessKey;
@@ -97,7 +98,10 @@ public class AwsClientFactories {
 
     @Override
     public GlueClient glue() {
-      return GlueClient.builder().httpClient(HTTP_CLIENT_DEFAULT).build();
+      return GlueClient.builder()
+          .httpClient(HTTP_CLIENT_DEFAULT)
+          .applyMutation(builder -> configureEndpoint(builder, glueEndpoint))
+          .build();
     }
 
     @Override
@@ -112,6 +116,7 @@ public class AwsClientFactories {
 
     @Override
     public void initialize(Map<String, String> properties) {
+      this.glueEndpoint = properties.get(AwsProperties.GLUE_CATALOG_ENDPOINT);
       this.s3Endpoint = properties.get(AwsProperties.S3FILEIO_ENDPOINT);
       this.s3AccessKeyId = properties.get(AwsProperties.S3FILEIO_ACCESS_KEY_ID);
       this.s3SecretAccessKey = properties.get(AwsProperties.S3FILEIO_SECRET_ACCESS_KEY);

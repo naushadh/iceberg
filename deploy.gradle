@@ -77,7 +77,7 @@ subprojects {
             }
           }
 
-          groupId = 'org.apache.iceberg'
+          groupId = 'io.github.naushadh'
           pom {
             name = 'Apache Iceberg'
             description = 'A table format for huge analytic datasets'
@@ -99,6 +99,21 @@ subprojects {
             issueManagement {
               system = 'GitHub'
               url = 'https://github.com/apache/iceberg/issues'
+            }
+            developers {
+              developer {
+                id = 'naushadh'
+                name = 'Naushadh A'
+                email = 'naushadh.ali@gmail.com'
+                organization = 'Github'
+                organizationUrl = 'https://github.com'
+              }
+            }
+            scm {
+              connection = 'scm:git:git://github.com/naushadh/iceberg.git'
+              developerConnection= 'scm:git:git://github.com/naushadh/iceberg.git'
+              url = 'https://github.com/naushadh/iceberg'
+              tag = 'HEAD'
             }
           }
         }

@@ -1,0 +1,8 @@
+version: '3.9'
+services:
+  app:
+    build: .
+    volumes:
+      - ~/.gradle:/root/.gradle
+      - ~/.gnupg:/root/.gnupg
+      - .:/app
